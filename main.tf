@@ -49,3 +49,26 @@ security_group_id =aws_security_group.allow_all.id
 cidr_ipv4 ="0.0.0.0/0"
 ip_protocol ="-1"
 }
+
+resource "aws_instance" "web" {
+  ami           = data.aws_ami.app_ami.image_id
+  #ami           = "ami-0a3c3a20c09d6f377"
+  instance_type = "t3.micro"
+  vpc_id = aws_vpc.main.id
+  subnet_id     = aws_subnet.main.id
+  security_groups = aws_security_group.allow_all.id
+  tags = {
+    Name = "HelloWorld"
+  }
+}
+
+data "aws_ami" "app_ami" {
+  most_recent = true
+
+  filter {
+    name   = "name"
+    values = ["al2023-ami-2023.3.20240122.0-kernel-6.1-x86_64"]
+  }
+
+}
+

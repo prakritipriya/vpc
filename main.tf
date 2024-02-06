@@ -19,7 +19,7 @@ resource "aws_subnet" "public_subsets" {
   }
 }
 resource "aws_subnet" "private_subsets" {
-  vpc_id     = aws_vpc.main.id
+  depends_on     = [aws_vpc.main]
   count=length(var.private_subnet_cidrs)
   cidr_block=element(var.private_subnet_cidrs,count.index)
 

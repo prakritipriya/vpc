@@ -19,7 +19,7 @@ resource "aws_subnet" "public_subsets" {
   }
 }
 resource "aws_subnet" "private_subsets" {
-  depends_on     = [aws_vpc.main]
+  vpc_id     = aws_vpc.main.id
   count=length(var.private_subnet_cidrs)
   cidr_block=element(var.private_subnet_cidrs,count.index)
 
@@ -54,7 +54,7 @@ resource "aws_instance" "dev_ec2" {
   ami           = data.aws_ami.app_ami.image_id
   #ami           = "ami-0a3c3a20c09d6f377"
   instance_type = "t3.micro"
-  vpc_id = aws_vpc.main.id
+depends_on     = [aws_vpc.main]
 
   security_groups = aws_security_group.allow_all.id
   tags = {

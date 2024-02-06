@@ -56,7 +56,7 @@ resource "aws_instance" "dev_ec2" {
   instance_type = "t3.micro"
 depends_on     = [aws_vpc.main]
 
-  security_groups = aws_security_group.allow_all.id
+  
   tags = {
     Name = "HelloWorld"
   }

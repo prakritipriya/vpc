@@ -50,7 +50,7 @@ cidr_ipv4 ="0.0.0.0/0"
 ip_protocol ="-1"
 }
 
-resource "aws_instance" "web" {
+resource "aws_instance" "dev_ec2" {
   ami           = data.aws_ami.app_ami.image_id
   #ami           = "ami-0a3c3a20c09d6f377"
   instance_type = "t3.micro"

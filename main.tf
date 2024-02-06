@@ -56,7 +56,7 @@ resource "aws_instance" "dev_ec2" {
   instance_type = "t3.micro"
 depends_on     = [aws_vpc.main]
 
- subnet_id =[aws_subnet.public_subsets.[count.index].id]
+ subnet_id =[aws_subnet.public_subsets.id[count.index]]
  vpc_security_group_ids = aws_security_group.allow_all.id 
   tags = {
     Name = "HelloWorld"

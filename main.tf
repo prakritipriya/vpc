@@ -66,6 +66,7 @@ resource "aws_instance" "dev_ec2" {
   instance_type = "t2.micro"
 depends_on     = [aws_vpc.main]
 
+associate_public_ip_address = true
  subnet_id =aws_subnet.some_public_subnet.id
 # vpc_security_group_ids = aws_security_group.allow_all.id 
 #count=length(var.public_subnet_cidrs)

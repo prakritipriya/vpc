@@ -9,15 +9,15 @@ resource "aws_vpc" "main"{
         Name="dev-vpc"
     }
 }
-resource "aws_subnet" "some_public_subnet" {
-  vpc_id            = aws_vpc.some_custom_vpc.id
+/*resource "aws_subnet" "some_public_subnet" {
+  vpc_id            = aws_vpc.main.id
   cidr_block        = "10.0.1.0/24"
   availability_zone = "us-east-1a"
  
   tags = {
     Name = "Some Public Subnet"
   }
-}
+} */
 
 resource "aws_subnet" "public_subsets" {
   vpc_id     = aws_vpc.main.id

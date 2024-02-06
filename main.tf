@@ -11,11 +11,12 @@ resource "aws_vpc" "main"{
 }
 resource "aws_subnet" "public_subsets" {
   vpc_id     = aws_vpc.main.id
-  count=length(var.public_subnet_cidrs)
-  cidr_block=element(var.public_subnet_cidrs,count.index)
-
+  #count=length(var.public_subnet_cidrs)
+ # cidr_block=element(var.public_subnet_cidrs,count.index)
+cidr_block ="10.0.1.0/24"
   tags = {
-    Name = "Public_Subset- ${count.index+1}"
+    Name = "Public_Subset-1"
+#${count.index+1}
   }
 }
 resource "aws_subnet" "private_subsets" {
@@ -56,7 +57,7 @@ resource "aws_instance" "dev_ec2" {
   instance_type = "t3.micro"
 depends_on     = [aws_vpc.main]
 
- subnet_id =[aws_subnet.public_subsets.id[count.index]]
+ subnet_id =[aws_subnet.public_subsets.id]
  vpc_security_group_ids = aws_security_group.allow_all.id 
   tags = {
     Name = "HelloWorld"

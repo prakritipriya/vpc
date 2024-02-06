@@ -71,6 +71,7 @@ associate_public_ip_address = true
 # vpc_security_group_ids = aws_security_group.allow_all.id 
 #count=length(var.public_subnet_cidrs)
 vpc_security_group_ids      = [aws_security_group.allow_all.id]
+key_name="keypair_apc"
   tags = {
     Name = "Brand_new"
   }

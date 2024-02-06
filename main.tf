@@ -71,7 +71,7 @@ depends_on     = [aws_vpc.main]
 #count=length(var.public_subnet_cidrs)
 vpc_security_group_ids      = [aws_security_group.allow_all.id]
   tags = {
-    Name = "HelloWorld"
+    Name = "Brand_new"
   }
 }
 

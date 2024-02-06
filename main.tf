@@ -27,3 +27,25 @@ resource "aws_subnet" "private_subsets" {
     Name = "Private_Subset- ${count.index+1}"
   }
 }
+
+resource "aws_security_group" "allow_all" {
+    name="allow_all"
+    description ="Allow all inbound and outbound traffic"
+    vpc_id=aws_vpc.main.id
+
+    tags={
+        Name="dev-sg"
+    }
+}
+
+resource "aws_vpc_security_group_ingress_rule" "allow_all_traffic" {
+security_group_id =aws_security_group.allow_all.id
+cidr_ipv4 ="0.0.0.0/0"
+ip_protocol ="-1"
+}
+
+resource "aws_vpc_security_group_egress_rule" "allow_all_traffic" {
+security_group_id =aws_security_group.allow_all.id
+cidr_ipv4 ="0.0.0.0/0"
+ip_protocol ="-1"
+}

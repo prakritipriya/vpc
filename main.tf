@@ -53,7 +53,7 @@ ip_protocol ="-1"
 resource "aws_instance" "dev_ec2" {
   ami           = data.aws_ami.app_ami.image_id
   #ami           = "ami-0a3c3a20c09d6f377"
-  instance_type = "t3.micro"
+  instance_type = "t2.micro"
 depends_on     = [aws_vpc.main]
 
  subnet_id =aws_subnet.public_subsets[count.index].id

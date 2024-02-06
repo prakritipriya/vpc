@@ -9,7 +9,7 @@ resource "aws_vpc" "main"{
         Name="dev-vpc"
     }
 }
-resource "aws_subnet" public_subsets" {
+resource "aws_subnet" "public_subsets" {
   vpc_id     = aws_vpc.main.id
   count=length(var.public_subnet_cidrs)
   cidr_block=element(var.public_subnet_cidrs,count.index)
@@ -18,7 +18,7 @@ resource "aws_subnet" public_subsets" {
     Name = "Public_Subset- ${count.index+1}"
   }
 }
-resource "aws_subnet" private_subsets" {
+resource "aws_subnet" "private_subsets" {
   vpc_id     = aws_vpc.main.id
   count=length(var.private_subnet_cidrs)
   cidr_block=element(var.private_subnet_cidrs,count.index)

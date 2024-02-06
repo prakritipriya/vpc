@@ -55,7 +55,7 @@ resource "aws_instance" "dev_ec2" {
   #ami           = "ami-0a3c3a20c09d6f377"
   instance_type = "t3.micro"
   vpc_id = aws_vpc.main.id
-  subnet_id     = aws_subnet.main.id
+
   security_groups = aws_security_group.allow_all.id
   tags = {
     Name = "HelloWorld"

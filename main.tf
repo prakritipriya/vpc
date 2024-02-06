@@ -9,7 +9,7 @@ resource "aws_vpc" "main"{
         Name="dev-vpc"
     }
 }
-/*resource "aws_subnet" "some_public_subnet" {
+resource "aws_subnet" "some_public_subnet" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = "10.0.1.0/24"
   availability_zone = "us-east-1a"
@@ -17,9 +17,9 @@ resource "aws_vpc" "main"{
   tags = {
     Name = "Some Public Subnet"
   }
-} */
+} 
 
-resource "aws_subnet" "public_subsets" {
+/*resource "aws_subnet" "public_subsets" {
   vpc_id     = aws_vpc.main.id
   count=length(var.public_subnet_cidrs)
   cidr_block=element(var.public_subnet_cidrs,count.index)
@@ -36,7 +36,7 @@ resource "aws_subnet" "private_subsets" {
   tags = {
     Name = "Private_Subset- ${count.index+1}"
   }
-} 
+} */
 
 resource "aws_security_group" "allow_all" {
     name="allow_all"
@@ -66,7 +66,7 @@ resource "aws_instance" "dev_ec2" {
   instance_type = "t2.micro"
 depends_on     = [aws_vpc.main]
 
- subnet_id =aws_subnet.public_subsets[count.index].id
+ subnet_id =aws_subnet.some_public_subnet.id
 # vpc_security_group_ids = aws_security_group.allow_all.id 
 #count=length(var.public_subnet_cidrs)
 vpc_security_group_ids      = [aws_security_group.allow_all.id]
